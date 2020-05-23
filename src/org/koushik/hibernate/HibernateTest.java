@@ -1,5 +1,7 @@
 package org.koushik.hibernate;
 
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -14,6 +16,10 @@ public class HibernateTest {
 		UserDetails user = new UserDetails();
 		user.setUserId(1);
 		user.setUserName("first name");
+		user.setJoinedDate(new Date());
+		user.setAddress("First user's address ");
+		user.setDescription("users description goes here ");
+		
 				
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
