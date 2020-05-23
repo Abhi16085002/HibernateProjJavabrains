@@ -33,6 +33,7 @@
         <property name="cache.use_second_level_cache">false</property>
         
         <!--  Drop and recreate database schema on startup -->
+<!--         <property name="hbm2ddl.auto">update</property> -->
         <property name="hbm2ddl.auto">create</property>
         
         <!-- Echo all executed SQL to stdout -->

@@ -12,7 +12,7 @@ public class HibernateTest {
 	public static void main(String[] args) {
 		
 		UserDetails user = new UserDetails();
-		user.setUserId(2);
+		user.setUserId(1);
 		user.setUserName("first name");
 				
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
