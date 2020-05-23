@@ -17,13 +17,11 @@ import javax.persistence.Transient;
 public class UserDetails {
 	@Id
 	private int userId;
-//	@Basic
-	@Transient
 	private String userName;
 	@Temporal(TemporalType.DATE)
 	private Date joinedDate;
 	private String address;
-	@Lob
+//	@Lob
 	private String description;
 	
 	
@@ -52,6 +50,7 @@ public class UserDetails {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	@Lob
 	public String getDescription() {
 		return description;
 	}
