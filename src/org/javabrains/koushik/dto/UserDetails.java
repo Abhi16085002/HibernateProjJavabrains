@@ -29,9 +29,6 @@ public class UserDetails {
 	@JoinTable(name="USER_ADDRESS", 
 				joinColumns = @JoinColumn(name="USER_ID")
 			)
-	@GenericGenerator(name = "hilo-gen", strategy = "increment")
-	@CollectionId(columns = { @Column(name = "ADDRESS_ID") }, generator = "hilo-gen", type = @Type (type="long") )
-    //private Set<Address> listOfAddress = new HashSet<Address>();
 	private Collection<Address> listOfAddress = new ArrayList<Address>();
 	
 	
