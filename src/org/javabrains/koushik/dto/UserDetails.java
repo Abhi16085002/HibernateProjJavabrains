@@ -6,11 +6,13 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CollectionId;
@@ -23,23 +25,20 @@ public class UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
-
 	private String userName;
-	@ElementCollection
-	@JoinTable(name="USER_ADDRESS", 
-				joinColumns = @JoinColumn(name="USER_ID")
-			)
-	private Collection<Address> listOfAddress = new ArrayList<Address>();
+	@OneToOne
+	@JoinColumn(name = "VEHICLE_ID")
+	private Vehicle vehicle;
 	
 	
-	public Collection<Address> getListOfAddress() {
-		return listOfAddress;
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 	public int getUserId() {
 		return userId;
-	}
-	public void setListOfAddress(Collection<Address> listOfAddress) {
-		this.listOfAddress = listOfAddress;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
