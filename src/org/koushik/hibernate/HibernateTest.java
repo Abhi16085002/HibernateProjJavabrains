@@ -22,7 +22,13 @@ public class HibernateTest {
 		addr.setPincode("pincode ");
 		addr.setState("state name");
 		
-		user.setAddress(addr);
+		user.setHomeAddress(addr);
+		
+		Address addr2 = new Address();
+		addr2.setCity("second city");
+		addr2.setPincode("second pin code");
+		
+		user.setOfficeAddress(addr2);
 				
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
