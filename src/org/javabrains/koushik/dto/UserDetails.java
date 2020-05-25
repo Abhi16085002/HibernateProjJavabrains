@@ -3,6 +3,7 @@ package org.javabrains.koushik.dto;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -29,7 +30,7 @@ public class UserDetails {
 	private int userId;
 	private String userName;
 	
-	@ManyToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 	
 	
