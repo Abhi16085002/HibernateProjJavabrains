@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
-@Entity
+//@Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 
 public class Vehicle {

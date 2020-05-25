@@ -3,7 +3,7 @@ package org.javabrains.koushik.dto;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class TwoWheeler extends Vehicle {
 	
 	private String SteeringHandle;

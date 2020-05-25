@@ -30,16 +30,7 @@ public class UserDetails {
 	private int userId;
 	private String userName;
 	
-	@OneToMany(cascade = CascadeType.PERSIST)
-	private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 	
-	
-	public Collection<Vehicle> getVehicle() {
-		return vehicle;
-	}
-	public void setVehicle(Collection<Vehicle> vehicle) {
-		this.vehicle = vehicle;
-	}
 	public int getUserId() {
 		return userId;
 	}

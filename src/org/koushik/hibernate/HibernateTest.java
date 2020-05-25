@@ -16,28 +16,27 @@ import org.javabrains.koushik.dto.Vehicle;
 public class HibernateTest {
 
 	public static void main(String[] args) {
+		
+		UserDetails user = new UserDetails();         // Transient Object
+		user.setUserName("Test User");                    
 				
+		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-//		for(int i=0;i<10;i++) {
-//			UserDetails user = new UserDetails() ;
-//			user.setUserName("user " + i );
-//			session.save(user);
-//		}
+//		user.setUserName("Update User");
 		
-		 UserDetails user = session.get(UserDetails.class, 5 );
-//		 System.out.println("User name pulled up is " + user.getUserName() );
-		 
-//		 session.delete(user);
-		 
-		 user.setUserName("Updated user");
-		 session.update(user);
+		session.save(user);  // persistent object
+		
+		user.setUserName("Update User");
+		user.setUserName("Update User Again");
+		
 		
 		session.getTransaction().commit();
 		session.close();
 		
+		user.setUserName("Updated user After Session Close");
 		
 	}
 
