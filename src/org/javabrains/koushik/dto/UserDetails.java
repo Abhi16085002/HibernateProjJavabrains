@@ -24,6 +24,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "USER_DETAILS")
+@org.hibernate.annotations.Entity(selectBeforeUpdate = true)
 public class UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

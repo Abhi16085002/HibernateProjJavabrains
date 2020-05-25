@@ -17,26 +17,30 @@ public class HibernateTest {
 
 	public static void main(String[] args) {
 		
-		UserDetails user = new UserDetails();         // Transient Object
-		user.setUserName("Test User");                    
-				
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-//		user.setUserName("Update User");
-		
-		session.save(user);  // persistent object
-		
-		user.setUserName("Update User");
-		user.setUserName("Update User Again");
-		
+		UserDetails user =(UserDetails) session.get(UserDetails.class,1); 
 		
 		session.getTransaction().commit();
 		session.close();
 		
-		user.setUserName("Updated user After Session Close");
+//		user.setUserName("updated username after session close ");
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		session.update(user);             // not made any changes but updated query still run
+//		user.setUserName("Change After Update");  
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		
+		
 		
 	}
 
