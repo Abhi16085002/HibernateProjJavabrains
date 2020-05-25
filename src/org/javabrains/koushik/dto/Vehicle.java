@@ -23,20 +23,20 @@ public class Vehicle {
 	private int vehicleId;
 	private String vehicleName;
 	
-	@ManyToOne
-	@NotFound(action = NotFoundAction.IGNORE)
-	private UserDetails user;
+//	@ManyToOne
+//	@NotFound(action = NotFoundAction.IGNORE)
+//	private UserDetails user;
 
 	
 	public int getVehicleId() {
 		return vehicleId;
 	}
-	public UserDetails getUser() {
-		return user;
-	}
-	public void setUser(UserDetails user) {
-		this.user = user;
-	}
+//	public UserDetails getUser() {
+//		return user;
+//	}
+//	public void setUser(UserDetails user) {
+//		this.user = user;
+//	}
 	public void setVehicleId(int vehicleId) {
 		this.vehicleId = vehicleId;
 	}

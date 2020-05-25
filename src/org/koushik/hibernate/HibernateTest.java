@@ -8,30 +8,36 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.javabrains.koushik.dto.Address;
+import org.javabrains.koushik.dto.FourWheeler;
+import org.javabrains.koushik.dto.TwoWheeler;
 import org.javabrains.koushik.dto.UserDetails;
 import org.javabrains.koushik.dto.Vehicle;
 
 public class HibernateTest {
 
 	public static void main(String[] args) {
-		
-		UserDetails user = new UserDetails();
-		user.setUserName("first name");
-		
+				
 		Vehicle vehicle = new Vehicle();
 		vehicle.setVehicleName("car");
 		
-		Vehicle vehicle2 = new Vehicle();
-		vehicle2.setVehicleName("Jeep");
+		TwoWheeler bike = new TwoWheeler();
+		bike.setVehicleName("bike");
+		bike.setSteeringHandle("bike steeringHaandle");
 		
-		user.getVehicle().add(vehicle);
-		user.getVehicle().add(vehicle2);
+		FourWheeler car = new FourWheeler();
+		car.setVehicleName("porsche");
+		car.setSteeringWheel("porche Steering Wheel");
+		
 		
 				
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.persist(user);
+		
+		session.save(vehicle);
+		session.save(bike);
+		session.save(car);
+		
 		session.getTransaction().commit();
 		session.close();
 		
