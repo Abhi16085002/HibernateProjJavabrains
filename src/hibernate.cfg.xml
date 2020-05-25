@@ -34,7 +34,7 @@
         
         <!--  Drop and recreate database schema on startup -->
 <!--         <property name="hbm2ddl.auto">update</property> -->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">create-drop</property>
         
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
