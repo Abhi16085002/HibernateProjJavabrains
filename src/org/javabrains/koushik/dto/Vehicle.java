@@ -20,15 +20,12 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-		name = "VEHICLE_TYPE",
-		discriminatorType = DiscriminatorType.STRING
-		)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
 public class Vehicle {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int vehicleId;
 	private String vehicleName;
 

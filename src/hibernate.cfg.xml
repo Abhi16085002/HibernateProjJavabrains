@@ -23,7 +23,7 @@
         <property name="hibernate.connection.password">Abhi2212</property>
         
         <!-- JDBC connection pool -->
-        <property name="hibernate.connection.pool_size">1</property>
+        <property name="hibernate.connection.pool_size">3</property>
         
 		<!--  SQL dialact -->
 <!-- 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> -->
