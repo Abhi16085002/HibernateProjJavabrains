@@ -25,21 +25,26 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-//		for(int i=1;i<=10;i++) {
-//		     UserDetails user = new UserDetails();
-//		     user.setUserName("user " + i );
-//		     session.save(user);
-//		}
 		
-		
+		Query query = session.createQuery("select userName from UserDetails ");
 //		Query query = session.createQuery("from UserDetails");
-		Query query = session.createQuery("from UserDetails where userId > 5 ");
-		List users = query.list();
+//		Query query = session.createQuery("from UserDetails where userId > 5 ");
+		query.setFirstResult(5);
+		query.setMaxResults(4);
+		
+//		List<UserDetails> users = (List<UserDetails>) query.list();
+		List<String> userNames = (List<String>) query.list();
 		
 		session.getTransaction().commit();
 		session.close();
 		
-		System.out.println("Size of list result = " + users.size() );
+//		System.out.println("Size of list result = " + users.size() );
+		
+//		for(UserDetails u : users)
+//			System.out.println(u.getUserName());
+		
+		for(String u : userNames)
+			System.out.println(u);
 		
 	}
 
