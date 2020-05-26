@@ -20,11 +20,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.SelectBeforeUpdate;
 import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "USER_DETAILS")
-@org.hibernate.annotations.Entity(selectBeforeUpdate = true)
+@SelectBeforeUpdate
 public class UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
