@@ -31,8 +31,9 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		UserDetails user = (UserDetails) session.get(UserDetails.class, 1);
-//		System.out.println(user.getUserName());
+		Query query = session.createQuery("from UserDetails user where user.userId = 1 ");
+		query.setCacheable(true);
+		List users = query.list();
 		
 		session.getTransaction().commit();
 		session.close();
@@ -40,8 +41,9 @@ public class HibernateTest {
 		Session session2 = sessionFactory.openSession();
 		session2.beginTransaction();
 		
-		UserDetails user2 = (UserDetails) session2.get(UserDetails.class, 1);
-//		System.out.println(user2.getUserName());
+		Query query2 = session2.createQuery("from UserDetails user where user.userId = 1 ");
+		query2.setCacheable(true);
+		users = query2.list();
 		
 		session2.getTransaction().commit();
 		session2.close();
