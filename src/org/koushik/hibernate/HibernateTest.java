@@ -3,6 +3,11 @@ package org.koushik.hibernate;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -26,14 +31,15 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-//		Query query = session.getNamedQuery("UserDetails.byId");
-//		query.setParameter(0, 2);
+//		Criteria criteria = session.createCriteria(UserDetails.class);   // it is depricated
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<UserDetails> criteria = builder.createQuery(UserDetails.class);
+		Root<UserDetails> root = criteria.from(UserDetails.class);
+		criteria.select(root);
+		criteria.where(builder.equal(root.get("userName"), "user 10" ));
+		Query<UserDetails> q = session.createQuery(criteria);
 		
-		Query query = session.getNamedQuery("UserDetails.byName");
-		query.setParameter(1, "user 10");
-		
-		
-		List<UserDetails> users = (List<UserDetails>) query.list();
+		List<UserDetails> users =  q.getResultList();
 		
 		session.getTransaction().commit();
 		session.close();
@@ -45,3 +51,4 @@ public class HibernateTest {
 	}
 
 }
+//query.where(builder.or(builder.between(root.get("userId"), 7, 10),(builder.equal(root.get("userId"), 5))));
