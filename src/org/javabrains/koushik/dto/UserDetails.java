@@ -3,6 +3,7 @@ package org.javabrains.koushik.dto;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -21,12 +22,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SelectBeforeUpdate;
 import org.hibernate.annotations.Type;
 
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @NamedQuery(name = "UserDetails.byId", query = "from UserDetails where userId = ?0 " )
 @Table(name = "USER_DETAILS")
 @SelectBeforeUpdate

@@ -31,22 +31,21 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-//		Criteria criteria = session.createCriteria(UserDetails.class);   // it is depricated
-		CriteriaBuilder builder = session.getCriteriaBuilder();
-		CriteriaQuery<UserDetails> criteria = builder.createQuery(UserDetails.class);
-		Root<UserDetails> root = criteria.from(UserDetails.class);
-		criteria.select(root);
-		criteria.where(builder.equal(root.get("userName"), "user 10" ));
-		Query<UserDetails> q = session.createQuery(criteria);
-		
-		List<UserDetails> users =  q.getResultList();
+		UserDetails user = (UserDetails) session.get(UserDetails.class, 1);
+//		System.out.println(user.getUserName());
 		
 		session.getTransaction().commit();
 		session.close();
 		
+		Session session2 = sessionFactory.openSession();
+		session2.beginTransaction();
 		
-		for(UserDetails u : users)
-			System.out.println(u.getUserName());
+		UserDetails user2 = (UserDetails) session2.get(UserDetails.class, 1);
+//		System.out.println(user2.getUserName());
+		
+		session2.getTransaction().commit();
+		session2.close();
+		
 		
 	}
 
