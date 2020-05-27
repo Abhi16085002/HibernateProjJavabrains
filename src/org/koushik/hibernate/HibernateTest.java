@@ -17,6 +17,7 @@ import org.javabrains.koushik.dto.Vehicle;
 
 public class HibernateTest {
 
+	
 	public static void main(String[] args) {
 		
 		
@@ -24,16 +25,12 @@ public class HibernateTest {
 		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		String minUserId = "5";
-//		String minUserId = "5 or 1=1"; 
-		String userName = "user 10";
 		
-//		Query query = session.createQuery("from UserDetails where userId >  " + minUserId );
-//		Query query = session.createQuery("from UserDetails where userId > ?0 " );
-		Query query = session.createQuery("from UserDetails where userId > :userId and userName = :userName " );
-//		query.setParameter(0, Integer.parseInt(minUserId));
-		query.setParameter("userId", Integer.parseInt(minUserId));
-		query.setParameter("userName", userName);
+//		Query query = session.getNamedQuery("UserDetails.byId");
+//		query.setParameter(0, 2);
+		
+		Query query = session.getNamedQuery("UserDetails.byName");
+		query.setParameter(1, "user 10");
 		
 		
 		List<UserDetails> users = (List<UserDetails>) query.list();
